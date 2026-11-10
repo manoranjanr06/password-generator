@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vaultkey – Password Generator</title>
+<meta name="theme-color" content="#14272c">
+<link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<link rel="icon" href="{{ url_for('static', filename='icons/icon.svg') }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<main>
+  <header>
+    <h1>Vaultkey</h1>
+    <p>Passwords are made in your browser and never leave this device.</p>
+  </header>
+
+  <section class="display" aria-live="polite">
+    <output id="password" class="pw" aria-label="Generated password"></output>
+    <div class="actions">
+      <button id="copy" class="primary">Copy password</button>
+      <button id="regen">Generate new</button>
+    </div>
+    <div class="meter" aria-hidden="true"><i id="bar"></i></div>
+    <p id="strength" class="strength"></p>
+  </section>
+
+  <section class="panel">
+    <label class="row" for="length">
+      <span>Length</span><b id="lenVal">16</b>
+    </label>
+    <input id="length" type="range" min="8" max="64" value="16">
+
+    <fieldset>
+      <legend>Include</legend>
+      <label><input type="checkbox" id="upper" checked> Uppercase (A–Z)</label>
+      <label><input type="checkbox" id="lower" checked> Lowercase (a–z)</label>
+      <label><input type="checkbox" id="nums" checked> Numbers (0–9)</label>
+      <label><input type="checkbox" id="sym" checked> Symbols (!@#$…)</label>
+      <label><input type="checkbox" id="amb"> Skip look-alikes (O, 0, l, 1, I)</label>
+    </fieldset>
+    <p id="error" class="error" role="alert" hidden></p>
+  </section>
+
+  <section class="panel">
+    <div class="row">
+      <label for="count">Generate several at once</label>
+      <input id="count" type="number" min="2" max="50" value="5">
+    </div>
+    <div class="actions">
+      <button id="bulk">Generate list</button>
+      <button id="copyAll" hidden>Copy all</button>
+    </div>
+    <ol id="list" class="list"></ol>
+  </section>
+
+  <footer><button id="install" hidden>Install app</button></footer>
+</main>
+<p id="toast" class="toast" role="status"></p>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
